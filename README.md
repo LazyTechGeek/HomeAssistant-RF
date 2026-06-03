@@ -1,2 +1,275 @@
-# HomeAssistant-RF
-HomeAssistant + RF
+# RF in Home Assistant
+
+[Insert description]
+
+## Watch the video here:
+▶️ [RF in Home Assistant](YouTube-Link)
+
+## 🛒 Parts List
+
+## ESPHome sample code used in this video with both RF and IR
+
+```yaml
+esphome:
+  name: ir-hub-lounge
+  friendly_name: IR Hub Lounge
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+
+api:
+  encryption:
+    key: "Lq2Pyogww7/0D9i3XsVJfjwb4FJzTKxUM2G0bIyGePk="
+
+ota:
+  - platform: esphome
+    password: "95a7916c2f2688c146f1ccdc06958d26"
+
+web_server:
+  port: 80
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "Ir-Hub-Lounge Fallback Hotspot"
+    password: "MEIbG4ry8onA"
+
+captive_portal:
+
+globals:
+  - id: learned_code
+    type: std::vector<int32_t>
+    restore_value: no
+  - id: learning_mode
+    type: bool
+    initial_value: 'false'
+  - id: signal_learned
+    type: bool
+    initial_value: 'false'
+
+spi:
+  clk_pin: GPIO18
+  mosi_pin: GPIO23
+  miso_pin: GPIO19
+
+cc1101:
+  id: cc1101_module
+  cs_pin: GPIO5
+  frequency: 433.92MHz
+  output_power: 10
+  modulation_type: ASK/OOK
+  symbol_rate: 5000
+  filter_bandwidth: 200kHz
+
+remote_receiver:
+  - id: rf_receiver
+    pin: GPIO15
+    tolerance: 50%
+    filter: 200us
+    dump:
+      - raw
+    idle: 40ms
+    on_raw:
+      then:
+        - lambda: |-
+            std::string code_str = "";
+            for (int i = 0; i < x.size(); i++) {
+              if (i > 0) code_str += ", ";
+              code_str += std::to_string(x[i]);
+            }
+            ESP_LOGI("raw_code", "Pulses: %d", x.size());
+            ESP_LOGI("raw_code", "Copy this line:");
+            ESP_LOGI("raw_code", "[%s]", code_str.c_str());
+            if (id(learning_mode)) {
+              id(learned_code).clear();
+              for (int32_t val : x) {
+                id(learned_code).push_back(val);
+              }
+              id(signal_learned) = true;
+              id(learning_mode) = false;
+              std::string preview = "";
+              int count = 0;
+              for (int32_t val : id(learned_code)) {
+                if (count > 0) preview += ", ";
+                preview += std::to_string(val);
+                count++;
+                if (count >= 20) {
+                  preview += "... (" + std::to_string(id(learned_code).size()) + " total)";
+                  break;
+                }
+              }
+              id(last_signal).publish_state(preview.c_str());
+              id(learn_status).publish_state("Signal learned! " + std::to_string(id(learned_code).size()) + " pulses.");
+            }
+
+
+
+
+  - id: ir_receiver
+    pin:
+      number: GPIO27
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    dump:
+      - samsung
+      - nec
+      - raw
+    filter: 50us
+    idle: 4ms
+
+remote_transmitter:
+  - id: rf_transmitter
+    pin: GPIO4
+    carrier_duty_percent: 100%
+    on_transmit:
+      then:
+        - cc1101.begin_tx: cc1101_module
+    on_complete:
+      then:
+        - cc1101.begin_rx: cc1101_module
+
+  - id: ir_transmitter
+    pin: GPIO26
+    carrier_duty_percent: 50%
+
+switch:
+  - platform: template
+    name: "Learning Mode"
+    id: learning_mode_switch
+    icon: "mdi:school"
+    lambda: 'return id(learning_mode);'
+    turn_on_action:
+      - lambda: |-
+          id(learning_mode) = true;
+          id(learn_status).publish_state("Waiting for signal... Press remote now!");
+      - logger.log: "Learning mode ON - press your remote"
+    turn_off_action:
+      - lambda: |-
+          id(learning_mode) = false;
+          id(learn_status).publish_state("Learning cancelled");
+      - logger.log: "Learning mode OFF"
+
+button:
+  - platform: restart
+    name: "Restart"
+
+  - platform: template
+    name: "Learn Signal"
+    icon: "mdi:record-rec"
+    on_press:
+      - switch.turn_on: learning_mode_switch
+
+
+  - platform: template
+    name: "Replay Learned Signal"
+    icon: "mdi:replay"
+    on_press:
+      - lambda: |-
+          if (!id(signal_learned) || id(learned_code).empty()) {
+            ESP_LOGW("replay", "No signal learned yet!");
+            id(learn_status).publish_state("No signal to replay - learn one first!");
+            return;
+          }
+          ESP_LOGI("replay", "Replaying %d pulses...", id(learned_code).size());
+          id(learn_status).publish_state("Transmitting...");
+      - remote_transmitter.transmit_raw:
+          transmitter_id: rf_transmitter
+          carrier_frequency: 0Hz
+          code: !lambda 'return id(learned_code);'
+      - lambda: |-
+          id(learn_status).publish_state("Signal transmitted!");
+          ESP_LOGI("replay", "Replay complete");
+
+
+  - platform: template
+    name: "Replay x3"
+    icon: "mdi:replay"
+    on_press:
+      - lambda: |-
+          if (!id(signal_learned) || id(learned_code).empty()) {
+            ESP_LOGW("replay", "No signal learned yet!");
+            return;
+          }
+      - repeat:
+          count: 3
+          then:
+            - remote_transmitter.transmit_raw:
+                transmitter_id: rf_transmitter
+                carrier_frequency: 0Hz
+                code: !lambda 'return id(learned_code);'
+            - delay: 50ms
+
+  - platform: template
+    name: "Clear Learned Signal"
+    icon: "mdi:delete"
+    on_press:
+      - lambda: |-
+          id(learned_code).clear();
+          id(signal_learned) = false;
+          id(last_signal).publish_state("(empty)");
+          id(learn_status).publish_state("Signal cleared");
+          ESP_LOGI("learn", "Learned signal cleared");
+
+  - platform: template
+    name: "Dining Room Light"
+    icon: "mdi:toggle-switch"
+    on_press:
+      - repeat:
+          count: 3
+          then:
+            - remote_transmitter.transmit_raw:
+                transmitter_id: rf_transmitter
+                carrier_frequency: 0Hz
+                code: [350, -10080, 997, -333, 333, -963, 1021, -312, 334, -973, 1023, -314, 337, -976, 344, -990, 990, -316, 1036, -317, 344, -973, 1015, -319, 334, -995, 340, -966, 336, -982, 1028, -317, 1012, -320, 343, -972, 1029, -326, 1012, -313, 344, -986, 347, -968, 344, -975, 353, -966, 1019, -315, 357, -10159, 1012, -318, 333, -997, 995, -336, 338, -975, 1020, -314, 334, -999, 347, -972, 1015, -319, 1011, -315, 357, -991, 1006, -331, 339, -974, 345, -994, 338, -973, 1016, -316, 1015, -323, 334, -989, 1020, -339, 1011, -320, 343, -972, 353, -991, 338, -975, 345, -994, 1015, -319, 344, -10176, 987, -347, 340, -993, 979, -353, 315]
+            - delay: 50ms
+
+
+  - platform: template
+    name: "TV Volume Up"
+    on_press:
+      - remote_transmitter.transmit_samsung:
+          transmitter_id: ir_transmitter
+          data: 0xE0E0E01F
+          nbits: 32
+
+  - platform: template
+    name: "TV Volume Down"
+    on_press:
+      - remote_transmitter.transmit_samsung:
+          transmitter_id: ir_transmitter
+          data: 0xE0E0D02F
+          nbits: 32
+
+text_sensor:
+  - platform: template
+    name: "Last Received Signal"
+    id: last_signal
+    icon: "mdi:signal"
+
+  - platform: template
+    name: "Learn Status"
+    id: learn_status
+    icon: "mdi:information"
+
+sensor:
+  - platform: template
+    name: "Learned Signal Length"
+    id: signal_length
+    icon: "mdi:counter"
+    unit_of_measurement: "pulses"
+    lambda: 'return id(learned_code).size();'
+    update_interval: 5s
+
+binary_sensor:
+  - platform: template
+    name: "Signal Learned"
+    icon: "mdi:check-circle"
+    lambda: 'return id(signal_learned);'
+```
