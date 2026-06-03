@@ -299,6 +299,9 @@ substitutions:
   remote_receiver_ir_pin: GPIO27
   remote_transmitter_ir_pin: GPIO26
 
+  # i2c: GPIO pins (BH1750 light sensor & BME280/BMP280 temp sensor)
+  i2c_sda_pin: GPIO21
+  i2c_scl_pin: GPIO22
 
 #########################
 # Do not change the below
@@ -551,6 +554,14 @@ text_sensor:
     id: learn_status
     icon: "mdi:information"
 
+
+i2c:
+  # Shared I2C bus for BH1750 (light) and BME280/BMP280 (temp/pressure/humidity) 
+  sda: ${i2c_sda_pin}
+  scl: ${i2c_scl_pin}
+  scan: true
+  id: bus_a
+
 sensor:
   - platform: template
     name: "Learned Signal Length"
@@ -559,6 +570,41 @@ sensor:
     unit_of_measurement: "pulses"
     lambda: 'return id(learned_code).size();'
     update_interval: 5s
+
+
+  ######################
+  # LIGHT SENSOR: BH1750
+  ######################
+
+  - platform: bh1750
+    name: "BH1750 Illuminance"
+    address: 0x23
+    update_interval: 60s
+
+
+  ###############################################################
+  # TEMP SENSOR: Use ONE of the following - comment out the other
+  ###############################################################
+
+  # BME280 - includes humidity (recommended)
+  - platform: bme280_i2c
+    address: 0x76   # or 0x77 depending on SDO
+    temperature:
+      name: "BME280 Temperature"
+    pressure:
+      name: "BME280 Pressure"
+    humidity:
+      name: "BME280 Humidity"
+
+  # BMP280 - no humidity
+  # - platform: bmp280_i2c
+  #   address: 0x76   # or 0x77 depending on SDO
+  #   temperature:
+  #     name: "BMP280 Temperature"
+  #   pressure:
+  #     name: "BMP280 Pressure"
+
+  ###############################################################
 
 binary_sensor:
   - platform: template
