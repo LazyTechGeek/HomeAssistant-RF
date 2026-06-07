@@ -5,27 +5,34 @@
 ## Watch the video here:
 ▶️ [RF in Home Assistant](YouTube-Link)
 
-## 🛒 Parts List
+[## 🛒 Parts List
 
-### RF & ESP32 only
-- [ESP32 Dev Board x1 (38-pin - requires both 3.3V and 5V pins)](https://www.amazon.co.uk/dp/B0CNYM28CK) - pack of 3  
-- [RF Transmitter](AMAZON LINK GOES HERE)
-- [Female to Female Jumper Cables](https://www.amazon.co.uk/dp/B01EV70C78) (ELEGOO 120pcs kit - includes M-F, M-M, F-F)
+### RF & ESP32 ONLY
+
+- [ESP32 Dev Board x1 (38-pin, requires both 3.3V and 5V pins)](https://www.amazon.co.uk/dp/B0CNYM28CK) *(pack of 3)*
+- [Female-to-Female Jumper Wires](https://www.amazon.co.uk/dp/B0BLZC3SQ2) *(40-piece kit, 10cm)*
+- **CC1101 433MHz RF Module (Choose One)**
+  - [Green PCB Version (Pinout A)](https://www.amazon.co.uk/dp/B09WKGYFPV)
+  - [Blue PCB Version (Pinout B)](https://www.amazon.co.uk/dp/B0DQL117RW)
 
 ### RF, IR PCB Option
-- [ESP32 Dev Board x1 (38-pin - requires both 3.3V and 5V pins)](https://www.amazon.co.uk/dp/B0CNYM28CK) - pack of 3  
-- [ELEGOO 32 Pcs Double Sided PCB Board Kit](https://www.amazon.co.uk/dp/B0734XYJPM) - use the 5cm x 7cm board from the kit
+- [Carrier PCB](PCBWAY LINK GOES HERE)
+- [ESP32 Dev Board x1 (38-pin, requires both 3.3V and 5V pins)](https://www.amazon.co.uk/dp/B0CNYM28CK) *(pack of 3)*
+- **CC1101 433MHz RF Module (Choose One)**
+  - [Green PCB Version (Pinout A)](https://www.amazon.co.uk/dp/B09WKGYFPV)
+  - [Blue PCB Version (Pinout B)](https://www.amazon.co.uk/dp/B0DQL117RW)
 - [2N2222 NPN Transistor x1](https://www.amazon.co.uk/dp/B0CPBR1FGB)
-- 22Ω Resistors x2 ⬎
-- 1kΩ Resistor x1   [AUKENIEN 1250pcs 25 Values Resistor Assortment Kit](https://www.amazon.co.uk/dp/B09MMBPSH9)
-- IR Transmitter LEDs x4 (5mm 940nm) ⬎
-- VS1838B IR Receiver x1               [100PCS 50 Pairs 5mm Infrared Diode LED 940nm](YOUR_AMAZON_LINK)
+- 22Ω Resistors x2
+- 1kΩ Resistor x1
+  - [Resistor Assortment Kit](https://www.amazon.co.uk/dp/B09MMBPSH9)
+- IR Transmitter LEDs x4 (5mm, 940nm)
+- VS1838B IR Receiver x1
+  - [IR LED & Receiver Kit](https://www.amazon.co.uk/dp/B09NN5VXHX)
 
 ## 🖨️ 3D Print Files
 
 - [IR Hub Base](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-Infrared/main/assets/LINK TO PART GOES HERE)
 - [IR Hub Lid](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-Infrared/main/assets/LINK TO PART GOES HERE)
-
 
 ## PCB
 
