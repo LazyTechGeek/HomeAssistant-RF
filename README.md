@@ -5,29 +5,31 @@
 ## Watch the video here:
 ▶️ [RF in Home Assistant](YouTube-Link)
 
-[## 🛒 Parts List
+## 🛒 Parts List
+
+> As an Amazon Associate I earn from qualifying purchases at no extra cost to you.
 
 ### RF & ESP32 ONLY
 
-- [ESP32 Dev Board x1 (38-pin, requires both 3.3V and 5V pins)](https://www.amazon.co.uk/dp/B0CNYM28CK) *(pack of 3)*
-- [Female-to-Female Jumper Wires](https://www.amazon.co.uk/dp/B0BLZC3SQ2) *(40-piece kit, 10cm)*
+- [ESP32 Dev Board x1 (38-pin, requires both 3.3V and 5V pins)](https://www.amazon.co.uk/dp/B0CNYM28CK?tag=lazytechgeekshop-21) *(pack of 3)*
+- [Female-to-Female Jumper Wires](https://www.amazon.co.uk/dp/B0BLZC3SQ2?tag=lazytechgeekshop-21) *(40-piece kit, 10cm)*
 - **CC1101 433MHz RF Module (Choose One)**
-  - [Green PCB Version (Pinout A)](https://www.amazon.co.uk/dp/B09WKGYFPV)
-  - [Blue PCB Version (Pinout B)](https://www.amazon.co.uk/dp/B0DQL117RW)
+  - [Green PCB Version (Pinout A)](https://www.amazon.co.uk/dp/B09WKGYFPV?tag=lazytechgeekshop-21)
+  - [Blue PCB Version (Pinout B)](https://www.amazon.co.uk/dp/B0DQL117RW?tag=lazytechgeekshop-21)
 
 ### RF, IR PCB Option
 - [Carrier PCB](PCBWAY LINK GOES HERE)
-- [ESP32 Dev Board x1 (38-pin, requires both 3.3V and 5V pins)](https://www.amazon.co.uk/dp/B0CNYM28CK) *(pack of 3)*
+- [ESP32 Dev Board x1 (38-pin, requires both 3.3V and 5V pins)](https://www.amazon.co.uk/dp/B0CNYM28CK?tag=lazytechgeekshop-21) *(pack of 3)*
 - **CC1101 433MHz RF Module (Choose One)**
-  - [Green PCB Version (Pinout A)](https://www.amazon.co.uk/dp/B09WKGYFPV)
-  - [Blue PCB Version (Pinout B)](https://www.amazon.co.uk/dp/B0DQL117RW)
-- [2N2222 NPN Transistor x1](https://www.amazon.co.uk/dp/B0CPBR1FGB)
+  - [Green PCB Version (Pinout A)](https://www.amazon.co.uk/dp/B09WKGYFPV?tag=lazytechgeekshop-21)
+  - [Blue PCB Version (Pinout B)](https://www.amazon.co.uk/dp/B0DQL117RW?tag=lazytechgeekshop-21)
+- [2N2222 NPN Transistor x1](https://www.amazon.co.uk/dp/B0CPBR1FGB?tag=lazytechgeekshop-21)
 - 22Ω Resistors x2
 - 1kΩ Resistor x1
-  - [Resistor Assortment Kit](https://www.amazon.co.uk/dp/B09MMBPSH9)
+  - [Resistor Assortment Kit](https://www.amazon.co.uk/dp/B09MMBPSH9?tag=lazytechgeekshop-21)
 - IR Transmitter LEDs x4 (5mm, 940nm)
 - VS1838B IR Receiver x1
-  - [IR LED & Receiver Kit](https://www.amazon.co.uk/dp/B09NN5VXHX)
+  - [IR LED & Receiver Kit](https://www.amazon.co.uk/dp/B09NN5VXHX?tag=lazytechgeekshop-21)
 
 ## 🖨️ 3D Print Files
 - [IR RF Hub Enclosure Base](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_rf_hub_enclosure_base.3mf)
