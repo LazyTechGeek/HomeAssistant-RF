@@ -84,6 +84,7 @@
 </tr>
 </table>
 
+## ESPHome YAML
 ## RF Only (Breadboard)
 ```yaml
 substitutions:
