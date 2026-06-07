@@ -126,11 +126,11 @@ substitutions:
   rf_receiver_filter: "200us"
   rf_receiver_idle: "40ms"
 
-############################################################
-# End of substitutions
-# Most users should only need to edit the device settings,
-# GPIO pins, and the buttons later in this file.
-############################################################
+ ############################################################
+ # End of substitutions
+ # Most users should only need to edit the device settings,
+ # GPIO pins, and the buttons later in this file.
+ ############################################################
 
 esphome:
   name: ${device_name}
