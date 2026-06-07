@@ -26,17 +26,55 @@
 - [IR Hub Base](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-Infrared/main/assets/LINK TO PART GOES HERE)
 - [IR Hub Lid](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-Infrared/main/assets/LINK TO PART GOES HERE)
 
-&nbsp;
-## RF & ESP32 only Wiring Diagram
-<p align="center">
-  <img src="assets/LINK TO PICTURE GOES HERE.png" width="400">
-</p>
 
-## RF, IR PCB Option Diagram
-<p align="center">
-<img src="assets/LINK TO PICTURE GOES HERE" width="700">
-</p>
+## CC1101 Pinout A & B Wiring Diagrams
 
+<table>
+<tr>
+<td width="60%">
+
+<img src="assets/CC1101_PinoutA_Wiring_Diagram.png" width="550">
+
+</td>
+<td width="40%" valign="top">
+
+### Green Board (Pinout A)
+Common green CC1101 module
+
+| Pin | Function | Pin | Function |
+|------|----------|------|----------|
+| 1 | GND | 2 | VCC |
+| 3 | MOSI | 4 | SCK |
+| 5 | MISO | 6 | GDO2 |
+| 7 | GDO0 | 8 | CSN |
+
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td width="60%">
+
+<img src="assets/CC1101_PinoutB_Wiring_Diagram.png" width="550">
+
+</td>
+<td width="40%" valign="top">
+
+
+### Blue Board (Pinout B)
+Common blue CC1101 module
+
+| Pin | Function | Pin | Function |
+|------|----------|------|----------|
+| 1 | GND | 2 | VCC |
+| 3 | GDO0 | 4 | CSN |
+| 5 | SCK | 6 | MOSI |
+| 7 | MISO | 8 | GDO2 |
+
+</td>
+</tr>
+</table>
 
 ## ESPHome sample code used in this video
 
