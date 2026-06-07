@@ -35,8 +35,9 @@
 - [IR LED Guide](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_led_guide.3mf)
 - [IR Receiver Guide](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_receiver_guide.3mf)
 
+## 🧩 PCB Files
+- [Carrier PCB V1.0](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/carrier_pcb_v1.0_gerbers.zip)
 ## PCB
-
 <table align="center">
 <tr>
 <td>
