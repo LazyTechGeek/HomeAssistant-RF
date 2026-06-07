@@ -76,6 +76,91 @@ Common blue CC1101 module
 </tr>
 </table>
 
+## new version
+
+## CC1101 Pinout A & B Wiring Diagrams
+
+> [!NOTE]
+> Two common CC1101 variants exist with different pin layouts. Identify your module using the images below and follow the corresponding wiring diagram.
+
+<table>
+<tr>
+<td width="60%">
+
+<img src="assets/CC1101_PinoutA_Wiring_Diagram.png" width="550">
+
+</td>
+<td width="40%" valign="top">
+
+### Green Board (Pinout A)
+Common green CC1101 module
+
+#### Pinout
+
+| Pin | Function | Pin | Function |
+|------|----------|------|----------|
+| 1 | GND | 2 | VCC |
+| 3 | MOSI | 4 | SCK |
+| 5 | MISO | 6 | GDO2 |
+| 7 | GDO0 | 8 | CSN |
+
+#### ESP32 GPIO Mapping
+
+| Function | ESP32 Pin |
+|----------|-----------|
+| GND | GND |
+| VCC | 3.3V |
+| MOSI | GPIO23 |
+| SCK | GPIO18 |
+| MISO | GPIO19 |
+| GDO2 | GPIO15 |
+| GDO0 | GPIO4 |
+| CSN | GPIO5 |
+
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td width="60%">
+
+<img src="assets/CC1101_PinoutB_Wiring_Diagram.png" width="550">
+
+</td>
+<td width="40%" valign="top">
+
+### Blue Board (Pinout B)
+Common blue CC1101 module
+
+#### Pinout
+
+| Pin | Function | Pin | Function |
+|------|----------|------|----------|
+| 1 | GND | 2 | VCC |
+| 3 | GDO0 | 4 | CSN |
+| 5 | SCK | 6 | MOSI |
+| 7 | MISO | 8 | GDO2 |
+
+#### ESP32 GPIO Mapping
+
+| Function | ESP32 Pin |
+|----------|-----------|
+| GND | GND |
+| VCC | 3.3V |
+| GDO0 | GPIO4 |
+| CSN | GPIO5 |
+| SCK | GPIO18 |
+| MOSI | GPIO23 |
+| MISO | GPIO19 |
+| GDO2 | GPIO15 |
+
+</td>
+</tr>
+</table>
+
+## end of new version
+
 ## ESPHome sample code used in this video
 
 ## Device Setup Template — just the ESP32 & RF only
