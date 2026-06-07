@@ -27,6 +27,32 @@
 - [IR Hub Lid](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-Infrared/main/assets/LINK TO PART GOES HERE)
 
 
+## PCB
+
+<table align="center">
+<tr>
+<td>
+<img src="assets/carrier_pcb_ir_rf_hub_pcb_top_render.png" width="300">
+</td>
+<td>
+<img src="assets/carrier_pcb_ir_rf_hub_pcb_assembled.png" width="300">
+</td>
+</tr>
+</table>
+
+## 3D Printed Enclosure
+
+<table align="center">
+<tr>
+<td>
+<img src="assets/carrier_pcb_ir_rf_hub_pcb_enclosure_assembled.png" width="300">
+</td>
+<td>
+<img src="assets/carrier_pcb_ir_rf_hub_pcb_enclosure_closed.png" width="300">
+</td>
+</tr>
+</table>
+
 ## CC1101 Pinout A & B Wiring Diagrams
 
 > [!NOTE]
