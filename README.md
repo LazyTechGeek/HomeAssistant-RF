@@ -30,9 +30,10 @@
   - [IR LED & Receiver Kit](https://www.amazon.co.uk/dp/B09NN5VXHX)
 
 ## 🖨️ 3D Print Files
-
-- [IR Hub Base](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-Infrared/main/assets/LINK TO PART GOES HERE)
-- [IR Hub Lid](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-Infrared/main/assets/LINK TO PART GOES HERE)
+- [IR RF Hub Enclosure Base](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_rf_hub_enclosure_base.3mf)
+- [IR RF Hub Enclosure Led](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_rf_hub_enclosure_lid.3mf)
+- [IR LED Guide](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_led_guide.3mf)
+- [IR Receiver Guide](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_receiver_guide.3mf)
 
 ## PCB
 
@@ -757,6 +758,4 @@ binary_sensor:
     lambda: 'return id(signal_learned);'
 
   # ADD YOUR OWN BINARY SENSOR SENSORS BELOW
-```
-    lambda: 'return id(signal_learned);'
 ```
