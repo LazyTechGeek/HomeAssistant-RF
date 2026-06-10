@@ -299,10 +299,12 @@ substitutions:
   ############################################################
   ir_carrier_duty_percent: "50%"
   ir_receiver_filter: "50us"
-  ir_receiver_idle: "4ms"
+  ir_receiver_idle: "10ms"
   ir_receiver_input: "true"
   ir_receiver_pullup: "true"
   ir_receiver_inverted: "true"
+  ir_receiver_buffer_size: "10kb"
+  ir_receiver_tolerance: "25%"
 
 ############################################################
 # End of substitutions
@@ -317,7 +319,7 @@ esphome:
 esp32:
   board: esp32dev
   framework:
-    type: arduino
+    type: esp-idf
 
 logger:
 
@@ -340,17 +342,6 @@ wifi:
     password: ${ap_password}
 
 captive_portal:
-
-globals:
-  - id: learned_code
-    type: std::vector<int32_t>
-    restore_value: no
-  - id: learning_mode
-    type: bool
-    initial_value: 'false'
-  - id: signal_learned
-    type: bool
-    initial_value: 'false'
 
 spi:
   clk_pin: ${spi_clk_pin}
@@ -378,41 +369,9 @@ remote_receiver:
     pin: ${remote_receiver_rf_pin}
     tolerance: ${rf_receiver_tolerance}
     filter: ${rf_receiver_filter}
-    dump:
-      - raw
     idle: ${rf_receiver_idle}
-    on_raw:
-      then:
-        - lambda: |-
-            std::string code_str = "";
-            for (int i = 0; i < x.size(); i++) {
-              if (i > 0) code_str += ", ";
-              code_str += std::to_string(x[i]);
-            }
-            ESP_LOGI("raw_code", "Pulses: %d", x.size());
-            ESP_LOGI("raw_code", "Copy this line:");
-            ESP_LOGI("raw_code", "[%s]", code_str.c_str());
-            if (id(learning_mode)) {
-              id(learned_code).clear();
-              for (int32_t val : x) {
-                id(learned_code).push_back(val);
-              }
-              id(signal_learned) = true;
-              id(learning_mode) = false;
-              std::string preview = "";
-              int count = 0;
-              for (int32_t val : id(learned_code)) {
-                if (count > 0) preview += ", ";
-                preview += std::to_string(val);
-                count++;
-                if (count >= 20) {
-                  preview += "... (" + std::to_string(id(learned_code).size()) + " total)";
-                  break;
-                }
-              }
-              id(last_signal).publish_state(preview.c_str());
-              id(learn_status).publish_state("Signal learned! " + std::to_string(id(learned_code).size()) + " pulses.");
-            }
+    dump: all   # see README for full protocol list and how to filter
+    # https://github.com/LazyTechGeek/HomeAssistant-RF
 
   - id: ir_receiver
     pin:
@@ -421,17 +380,18 @@ remote_receiver:
       mode:
         input: ${ir_receiver_input}
         pullup: ${ir_receiver_pullup}
-    dump:
-      - samsung
-      - nec
-      - raw
     filter: ${ir_receiver_filter}
     idle: ${ir_receiver_idle}
+    buffer_size: ${ir_receiver_buffer_size}
+    tolerance: ${ir_receiver_tolerance}    
+    dump: all    # see README for full protocol list and how to filter
+    # https://github.com/LazyTechGeek/HomeAssistant-IR
 
 remote_transmitter:
   - id: rf_transmitter
     pin: ${remote_transmitter_rf_pin}
     carrier_duty_percent: ${rf_carrier_duty_percent}
+    non_blocking: true
     on_transmit:
       then:
         - cc1101.begin_tx: cc1101_module
@@ -442,23 +402,7 @@ remote_transmitter:
   - id: ir_transmitter
     pin: ${remote_transmitter_ir_pin}
     carrier_duty_percent: ${ir_carrier_duty_percent}
-
-switch:
-  - platform: template
-    name: "Learning Mode"
-    id: learning_mode_switch
-    icon: "mdi:school"
-    lambda: 'return id(learning_mode);'
-    turn_on_action:
-      - lambda: |-
-          id(learning_mode) = true;
-          id(learn_status).publish_state("Waiting for signal... Press remote now!");
-      - logger.log: "Learning mode ON - press your remote"
-    turn_off_action:
-      - lambda: |-
-          id(learning_mode) = false;
-          id(learn_status).publish_state("Learning cancelled");
-      - logger.log: "Learning mode OFF"
+    non_blocking: true
 
 button:
   ##############################################################
@@ -468,91 +412,12 @@ button:
   - platform: restart
     name: "Restart"
 
-  - platform: template
-    name: "Replay Learned Signal"
-    icon: "mdi:replay"
-    on_press:
-      - lambda: |-
-          if (!id(signal_learned) || id(learned_code).empty()) {
-            ESP_LOGW("replay", "No signal learned yet!");
-            id(learn_status).publish_state("No signal to replay - learn one first!");
-            return;
-          }
-          ESP_LOGI("replay", "Replaying %d pulses...", id(learned_code).size());
-          id(learn_status).publish_state("Transmitting...");
-      - remote_transmitter.transmit_raw:
-          transmitter_id: rf_transmitter
-          carrier_frequency: 0Hz
-          code: !lambda 'return id(learned_code);'
-      - lambda: |-
-          id(learn_status).publish_state("Signal transmitted!");
-          ESP_LOGI("replay", "Replay complete");
-
-
-  - platform: template
-    name: "Replay x3"
-    icon: "mdi:replay"
-    on_press:
-      - lambda: |-
-          if (!id(signal_learned) || id(learned_code).empty()) {
-            ESP_LOGW("replay", "No signal learned yet!");
-            return;
-          }
-      - repeat:
-          count: 3
-          then:
-            - remote_transmitter.transmit_raw:
-                transmitter_id: rf_transmitter
-                carrier_frequency: 0Hz
-                code: !lambda 'return id(learned_code);'
-            - delay: 50ms
-
-  - platform: template
-    name: "Clear Learned Signal"
-    icon: "mdi:delete"
-    on_press:
-      - lambda: |-
-          id(learned_code).clear();
-          id(signal_learned) = false;
-          id(last_signal).publish_state("(empty)");
-          id(learn_status).publish_state("Signal cleared");
-          ESP_LOGI("learn", "Learned signal cleared");
-
   # ADD YOUR OWN RF BUTTONS BELOW - see README: https://github.com/LazyTechGeek/HomeAssistant-RF
 
-text_sensor:
-  ##############################################################
-  # BUILT-IN TEXT SENSORS - do not remove these
-  ##############################################################
-
-  - platform: template
-    name: "Last Received Signal"
-    id: last_signal
-    icon: "mdi:signal"
-
-  - platform: template
-    name: "Learn Status"
-    id: learn_status
-    icon: "mdi:information"
-
-  # ADD YOUR OWN TEXT SENSORS BELOW
-
 sensor:
-  ##############################################################
-  # BUILT-IN SENSOR - do not remove these
-  ##############################################################
-
-  - platform: template
-    name: "Learned Signal Length"
-    id: signal_length
-    icon: "mdi:counter"
-    unit_of_measurement: "pulses"
-    lambda: 'return id(learned_code).size();'
-    update_interval: 5s
-
-  ######################
-  # LIGHT SENSOR: BH1750
-  ######################
+  ##########################################
+  # LIGHT SENSOR: BH1750 - remove if unused
+  ##########################################
 
   - platform: bh1750
     name: "BH1750 Illuminance"
@@ -582,17 +447,4 @@ sensor:
   #     name: "BMP280 Pressure"
 
   # ADD YOUR OWN SENSORS BELOW
-
-  
-binary_sensor:
-  ##############################################################
-  # BUILT-IN BINARY SENSOR - do not remove these
-  ##############################################################
-
-  - platform: template
-    name: "Signal Learned"
-    icon: "mdi:check-circle"
-    lambda: 'return id(signal_learned);'
-
-  # ADD YOUR OWN BINARY SENSOR SENSORS BELOW
 ```
