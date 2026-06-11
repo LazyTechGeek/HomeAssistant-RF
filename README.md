@@ -518,3 +518,116 @@ remote_receiver:
     idle: ${rf_receiver_idle}
     dump: raw  # Raw timing dump - last resort fallback
 ```
+&nbsp;
+## 🔘 Button Examples by Brand/Protocol.
+https://esphome.io/components/remote_transmitter/
+⚠️ These go under <code><b>button:</b></code> in your ESPHome config
+&nbsp;
+## Restart button
+```yaml
+# BUILT IN BUTTONS
+  - platform: restart
+    name: "Restart"
+```
+
+## RC Switch Raw
+```yaml
+  - platform: template
+    name: "RC Switch Raw"
+    on_press:
+      - remote_transmitter.transmit_rc_switch_raw:
+          transmitter_id: rf_transmitter
+          code: '101000111111011011101000'
+          protocol: 1
+```
+
+## RC Switch Type A (DIP switch style remotes)
+```yaml
+  - platform: template
+    name: "RC Switch Type A"
+    on_press:
+      - remote_transmitter.transmit_rc_switch_type_a:
+          transmitter_id: rf_transmitter
+          group: '01001'
+          device: '10110'
+          state: true
+          protocol: 1
+```
+
+## RC Switch Type B:
+```yaml
+  - platform: template
+    name: "RC Switch Type B"
+    on_press:
+      - remote_transmitter.transmit_rc_switch_type_b:
+          transmitter_id: rf_transmitter
+          address: 1
+          channel: 3
+          state: true
+          protocol: 1
+```
+
+## RC Switch Type C:
+```yaml
+  - platform: template
+    name: "RC Switch Type C"
+    on_press:
+      - remote_transmitter.transmit_rc_switch_type_c:
+          transmitter_id: rf_transmitter
+          family: 'c'
+          group: 3
+          device: 1
+          state: true
+          protocol: 1
+```
+
+## RC Switch Type D:
+```yaml
+  - platform: template
+    name: "RC Switch Type D"
+    on_press:
+      - remote_transmitter.transmit_rc_switch_type_d:
+          transmitter_id: rf_transmitter
+          group: 'c'
+          device: 1
+          state: true
+          protocol: 1
+```
+
+## Nexa (popular in Scandinavia):
+```yaml
+  - platform: template
+    name: "Nexa"
+    on_press:
+      - remote_transmitter.transmit_nexa:
+          transmitter_id: rf_transmitter
+          device: 0x38DDB4A
+          state: 1
+          group: 0
+          channel: 15
+          level: 0
+```
+
+## KeeLoq (garage doors/car remotes):
+```yaml
+  - platform: template
+    name: "KeeLoq"
+    on_press:
+      - remote_transmitter.transmit_keeloq:
+          transmitter_id: rf_transmitter
+          address: '0x57ffe7b'
+          command: '0x02'
+          code: '0xd19ef0a9'
+          repeat:
+            times: 3
+            wait_time: 15ms
+```
+
+## KeeLoq (garage doors/car remotes):
+```yaml
+  - platform: template
+    name: "Pronto RF"
+    on_press:
+      - remote_transmitter.transmit_pronto:
+          transmitter_id: rf_transmitter
+          data: "0000 006D 0010 0000 0008 0020 0008 0046 000A 0020"
