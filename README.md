@@ -448,3 +448,72 @@ sensor:
 
   # ADD YOUR OWN SENSORS BELOW
 ```
+&nbsp;
+## Dump Filters
+### Infrared
+```yaml
+
+remote_receiver:
+  - id: rf_receiver
+    pin: ${remote_receiver_rf_pin}
+    tolerance: ${rf_receiver_tolerance}
+    filter: ${rf_receiver_filter}
+    idle: ${rf_receiver_idle}
+    dump: all
+
+   # dump:
+   #   - aeha         # AEHA infrared codes
+   #   - beo4         # B&O Beo4 infrared codes
+   #   - canalsat     # CanalSat infrared codes (56kHz)
+   #   - canalsatld   # CanalSatLD infrared codes (56kHz)
+   #   - coolix       # Coolix infrared codes
+   #   - dish         # Dish infrared codes (57.6kHz - many receivers won't decode)
+   #   - dyson        # Dyson Cool AM7 fan codes
+   #   - jvc          # JVC infrared codes
+   #   - gobox        # Go-Box infrared codes
+   #   - haier        # Haier infrared codes
+   #   - lg           # LG infrared codes
+   #   - magiquest    # MagiQuest wand infrared codes
+   #   - midea        # Midea infrared codes
+   #   - nec          # NEC infrared codes (most common - cheap/generic remotes)
+   #   - panasonic    # Panasonic infrared codes
+   #   - pioneer      # Pioneer infrared codes
+   #   - rc5          # RC5 infrared codes
+   #   - rc6          # RC6 infrared codes
+   #   - roomba       # Roomba infrared codes
+   #   - samsung      # Samsung infrared codes
+   #   - samsung36    # Samsung36 infrared codes
+   #   - symphony     # Symphony infrared codes
+   #   - sony         # Sony infrared codes
+   #   - toshiba_ac   # Toshiba AC infrared codes
+   #   - mirage       # Mirage infrared codes
+   #   - toto         # Toto infrared codes
+   #   - pronto       # Universal raw format - use if no protocol matches
+```
+### RF
+```yaml
+remote_receiver:
+  - id: rf_receiver
+    pin: ${remote_receiver_rf_pin}
+    tolerance: ${rf_receiver_tolerance}
+    filter: ${rf_receiver_filter}
+    idle: ${rf_receiver_idle}
+    dump: all   # OPTION 1: Use this for initial setup to see all protocols
+
+    # OPTION 2: Once you know your protocols, replace 'dump: all' with specific list:
+    # dump:
+    #   - rc_switch    # Most common 433MHz remotes
+    #   - nexa         # Nexa RF codes
+    #   - keeloq       # KeeLoq RF codes
+    #   - pronto       # Print remote code in Pronto form. Useful for using arbitrary protocols.
+```
+### Raw
+```yaml
+remote_receiver:
+  - id: rf_receiver
+    pin: ${remote_receiver_rf_pin}
+    tolerance: ${rf_receiver_tolerance}
+    filter: ${rf_receiver_filter}
+    idle: ${rf_receiver_idle}
+    dump: raw  # Raw timing dump - last resort fallback
+```
