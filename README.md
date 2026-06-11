@@ -519,7 +519,7 @@ remote_receiver:
     dump: raw  # Raw timing dump - last resort fallback
 ```
 &nbsp;
-## 🔘 Button Examples by Brand/Protocol.
+## 🔘 RF Button Examples by Protocol
 https://esphome.io/components/remote_transmitter/
 ⚠️ These go under <code><b>button:</b></code> in your ESPHome config
 &nbsp;
@@ -533,18 +533,18 @@ https://esphome.io/components/remote_transmitter/
 ## RC Switch Raw
 ```yaml
   - platform: template
-    name: "RC Switch Raw"
+    name: "NAME_OF_BUTTON"       # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_rc_switch_raw:
-          transmitter_id: rf_transmitter
-          code: '101000111111011011101000'
-          protocol: 1
+          transmitter_id: rf_transmitter  # ← do not change this
+          code: 'YOUR_CODE'               # ← from dump output e.g. '101000111111011011101000'
+          protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
 ## RC Switch Type A (DIP switch style remotes)
 ```yaml
   - platform: template
-    name: "RC Switch Type A"
+    name: "NAME_OF_BUTTON"  # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_rc_switch_type_a:
           transmitter_id: rf_transmitter
@@ -556,78 +556,79 @@ https://esphome.io/components/remote_transmitter/
 
 ## RC Switch Type B:
 ```yaml
-  - platform: template
-    name: "RC Switch Type B"
+- platform: template
+    name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_rc_switch_type_b:
-          transmitter_id: rf_transmitter
-          address: 1
-          channel: 3
-          state: true
-          protocol: 1
+          transmitter_id: rf_transmitter  # ← do not change this
+          address: YOUR_ADDRESS           # ← from dump output e.g. 1
+          channel: YOUR_CHANNEL           # ← from dump output e.g. 3
+          state: true                     # ← true = on, false = off
+          protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
 ## RC Switch Type C:
 ```yaml
-  - platform: template
-    name: "RC Switch Type C"
+- platform: template
+    name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_rc_switch_type_c:
-          transmitter_id: rf_transmitter
-          family: 'c'
-          group: 3
-          device: 1
-          state: true
-          protocol: 1
+          transmitter_id: rf_transmitter  # ← do not change this
+          family: 'YOUR_FAMILY'           # ← from dump output e.g. 'c' (range: a to p)
+          group: YOUR_GROUP               # ← from dump output e.g. 3 (range: 1 to 4)
+          device: YOUR_DEVICE             # ← from dump output e.g. 1 (range: 1 to 4)
+          state: true                     # ← true = on, false = off
+          protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
 ## RC Switch Type D:
 ```yaml
-  - platform: template
-    name: "RC Switch Type D"
+- platform: template
+    name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_rc_switch_type_d:
-          transmitter_id: rf_transmitter
-          group: 'c'
-          device: 1
-          state: true
-          protocol: 1
+          transmitter_id: rf_transmitter  # ← do not change this
+          group: 'YOUR_GROUP'             # ← from dump output e.g. 'c' (range: a to d)
+          device: YOUR_DEVICE             # ← from dump output e.g. 1 (range: 1 to 3)
+          state: true                     # ← true = on, false = off
+          protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
 ## Nexa (popular in Scandinavia):
 ```yaml
-  - platform: template
-    name: "Nexa"
+- platform: template
+    name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_nexa:
-          transmitter_id: rf_transmitter
-          device: 0x38DDB4A
-          state: 1
-          group: 0
-          channel: 15
-          level: 0
+          transmitter_id: rf_transmitter  # ← do not change this
+          device: YOUR_DEVICE             # ← from dump output e.g. 0x38DDB4A
+          state: 1                        # ← 0 = off, 1 = on, 2 = dimmer level
+          group: YOUR_GROUP               # ← from dump output e.g. 0
+          channel: YOUR_CHANNEL           # ← from dump output e.g. 15
+          level: YOUR_LEVEL               # ← from dump output e.g. 0 (dimmer level)
 ```
 
 ## KeeLoq (garage doors/car remotes):
 ```yaml
-  - platform: template
-    name: "KeeLoq"
+- platform: template
+    name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_keeloq:
-          transmitter_id: rf_transmitter
-          address: '0x57ffe7b'
-          command: '0x02'
-          code: '0xd19ef0a9'
+          transmitter_id: rf_transmitter  # ← do not change this
+          address: 'YOUR_ADDRESS'         # ← from dump output e.g. '0x57ffe7b'
+          command: 'YOUR_COMMAND'         # ← from dump output e.g. '0x02'
+          code: 'YOUR_CODE'               # ← from dump output e.g. '0xd19ef0a9'
           repeat:
-            times: 3
-            wait_time: 15ms
+            times: 3                      # ← recommended minimum for KeeLoq
+            wait_time: 15ms               # ← matches HCS301 chip timing
 ```
 
-## KeeLoq (garage doors/car remotes):
+## Pronto (universal fallback):
 ```yaml
-  - platform: template
-    name: "Pronto RF"
+- platform: template
+    name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_pronto:
-          transmitter_id: rf_transmitter
-          data: "0000 006D 0010 0000 0008 0020 0008 0046 000A 0020"
+          transmitter_id: rf_transmitter  # ← do not change this
+          data: "YOUR_PRONTO_DATA"        # ← from dump output e.g. "0000 006D 0010 0000 0008 0020..."
+```
