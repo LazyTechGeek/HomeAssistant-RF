@@ -459,8 +459,9 @@ remote_receiver:
     tolerance: ${rf_receiver_tolerance}
     filter: ${rf_receiver_filter}
     idle: ${rf_receiver_idle}
-    dump: all
+    dump: all   # OPTION 1: Use this for initial setup to see all protocols
 
+   # OPTION 2: Once you know your protocols, replace 'dump: all' with specific list:
    # dump:
    #   - aeha         # AEHA infrared codes
    #   - beo4         # B&O Beo4 infrared codes
