@@ -530,6 +530,19 @@ https://esphome.io/components/remote_transmitter/
     name: "Restart"
 ```
 
+## Raw TESTEED
+```yaml
+  - platform: template
+    name: "NAME_OF_BUTTON"       # ← this can be anything you like
+    on_press:
+      - remote_transmitter.transmit_raw:
+          transmitter_id: rf_transmitter  # ← do not change this
+          code:
+            [
+            YOUR_VALUE_1, YOUR_VALUE_2, YOUR_VALUE_3 # ← from dump output e.g. 771, -275, 240, -746...
+            ]
+```
+
 ## RC Switch Raw
 ```yaml
   - platform: template
@@ -623,12 +636,13 @@ https://esphome.io/components/remote_transmitter/
             wait_time: 15ms               # ← matches HCS301 chip timing
 ```
 
-## Pronto (universal fallback):
+## Pronto (universal fallback): TESTED
 ```yaml
-- platform: template
+  - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_pronto:
-          transmitter_id: rf_transmitter  # ← do not change this
-          data: "YOUR_PRONTO_DATA"        # ← from dump output e.g. "0000 006D 0010 0000 0008 0020..."
+          transmitter_id: rf_transmitter
+          data: >-
+          "YOUR_PRONTO_DATA"              # ← from dump output e.g. "0000 006D 0010 0000 0008 0020..."
 ```
