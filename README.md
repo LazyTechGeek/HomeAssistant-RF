@@ -530,7 +530,7 @@ https://esphome.io/components/remote_transmitter/
     name: "Restart"
 ```
 
-## Raw TESTEED
+## Raw
 ```yaml
   - platform: template
     name: "NAME_OF_BUTTON"       # ← this can be anything you like
@@ -558,7 +558,7 @@ https://esphome.io/components/remote_transmitter/
             wait_time: 10ms               # ← delay between each repeat
 ```
 
-## RC Switch Type A (DIP switch style remotes) TESTED*
+## RC Switch Type A (DIP switch style remotes)
 ```yaml
   - platform: template
     name: "NAME_OF_BUTTON"  # ← this can be anything you like
@@ -571,7 +571,7 @@ https://esphome.io/components/remote_transmitter/
           protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
-## RC Switch Type B: TESTED*
+## RC Switch Type B:
 ```yaml
   - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
@@ -584,7 +584,7 @@ https://esphome.io/components/remote_transmitter/
           protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
-## RC Switch Type C: TESTED*
+## RC Switch Type C:
 ```yaml
   - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
@@ -598,7 +598,7 @@ https://esphome.io/components/remote_transmitter/
           protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
-## RC Switch Type D: TESTED*
+## RC Switch Type D:
 ```yaml
   - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
@@ -611,7 +611,7 @@ https://esphome.io/components/remote_transmitter/
           protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
-## Nexa (popular in Scandinavia): TESTED*
+## Nexa (popular in Scandinavia):
 ```yaml
   - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
@@ -625,7 +625,7 @@ https://esphome.io/components/remote_transmitter/
           level: YOUR_LEVEL               # ← from dump output e.g. 0 (dimmer level)
 ```
 
-## KeeLoq (garage doors/car remotes): TESTED*
+## KeeLoq (garage doors/car remotes):
 ```yaml
   - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
@@ -640,7 +640,7 @@ https://esphome.io/components/remote_transmitter/
             wait_time: 15ms               # ← matches HCS301 chip timing
 ```
 
-## Pronto (universal fallback): TESTED
+## Pronto (universal fallback):
 ```yaml
   - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
