@@ -553,6 +553,9 @@ https://esphome.io/components/remote_transmitter/
           transmitter_id: rf_transmitter  # ← do not change this
           code: 'YOUR_CODE'               # ← from dump output e.g. '101000111111011011101000'
           protocol: 1                     # ← from dump output e.g. protocol=1
+          repeat:
+            times: 5                      # ← most receivers need multiple repeats to trigger reliably
+            wait_time: 10ms               # ← delay between each repeat
 ```
 
 ## RC Switch Type A (DIP switch style remotes) TESTED*
