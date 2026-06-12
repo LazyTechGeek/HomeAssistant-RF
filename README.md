@@ -539,7 +539,8 @@ https://esphome.io/components/remote_transmitter/
           transmitter_id: rf_transmitter  # ← do not change this
           code:
             [
-            YOUR_VALUE_1, YOUR_VALUE_2, YOUR_VALUE_3 # ← from dump output e.g. 771, -275, 240, -746...
+            # ← paste your values from dump output here
+            # e.g. 771, -275, 240, -746, 511, -240, 775...
             ]
 ```
 
