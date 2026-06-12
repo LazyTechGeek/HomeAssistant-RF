@@ -555,35 +555,35 @@ https://esphome.io/components/remote_transmitter/
           protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
-## RC Switch Type A (DIP switch style remotes)
+## RC Switch Type A (DIP switch style remotes) TESTED*
 ```yaml
   - platform: template
     name: "NAME_OF_BUTTON"  # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_rc_switch_type_a:
-          transmitter_id: rf_transmitter
-          group: '01001'
-          device: '10110'
-          state: true
-          protocol: 1
+          transmitter_id: rf_transmitter  # ← do not change this
+          group: 'YOUR_GROUP'             # ← from dump output e.g. '01001'
+          device: 'YOUR_DEVICE'           # ← from dump output e.g. '10110'
+          state: on                       # ← on/off state to send
+          protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
-## RC Switch Type B:
+## RC Switch Type B: TESTED*
 ```yaml
-- platform: template
+  - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_rc_switch_type_b:
           transmitter_id: rf_transmitter  # ← do not change this
           address: YOUR_ADDRESS           # ← from dump output e.g. 1
           channel: YOUR_CHANNEL           # ← from dump output e.g. 3
-          state: true                     # ← true = on, false = off
+          state: on                       # ← on/off state to send
           protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
-## RC Switch Type C:
+## RC Switch Type C: TESTED*
 ```yaml
-- platform: template
+  - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_rc_switch_type_c:
@@ -591,26 +591,26 @@ https://esphome.io/components/remote_transmitter/
           family: 'YOUR_FAMILY'           # ← from dump output e.g. 'c' (range: a to p)
           group: YOUR_GROUP               # ← from dump output e.g. 3 (range: 1 to 4)
           device: YOUR_DEVICE             # ← from dump output e.g. 1 (range: 1 to 4)
-          state: true                     # ← true = on, false = off
+          state: ON                       # ← on/off state to send
           protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
-## RC Switch Type D:
+## RC Switch Type D: TESTED*
 ```yaml
-- platform: template
+  - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_rc_switch_type_d:
           transmitter_id: rf_transmitter  # ← do not change this
           group: 'YOUR_GROUP'             # ← from dump output e.g. 'c' (range: a to d)
           device: YOUR_DEVICE             # ← from dump output e.g. 1 (range: 1 to 3)
-          state: true                     # ← true = on, false = off
+          state: on                       # ← on/off state to send
           protocol: 1                     # ← from dump output e.g. protocol=1
 ```
 
-## Nexa (popular in Scandinavia):
+## Nexa (popular in Scandinavia): TESTED*
 ```yaml
-- platform: template
+  - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_nexa:
@@ -622,9 +622,9 @@ https://esphome.io/components/remote_transmitter/
           level: YOUR_LEVEL               # ← from dump output e.g. 0 (dimmer level)
 ```
 
-## KeeLoq (garage doors/car remotes):
+## KeeLoq (garage doors/car remotes): TESTED*
 ```yaml
-- platform: template
+  - platform: template
     name: "NAME_OF_BUTTON"        # ← this can be anything you like
     on_press:
       - remote_transmitter.transmit_keeloq:
