@@ -660,5 +660,5 @@ https://esphome.io/components/remote_transmitter/
       - remote_transmitter.transmit_pronto:
           transmitter_id: rf_transmitter
           data: >-
-          "YOUR_PRONTO_DATA"              # ← from dump output e.g. "0000 006D 0010 0000 0008 0020..."
+          YOUR_PRONTO_DATA              # ← from dump output e.g. "0000 006D 0010 0000 0008 0020..."
 ```
