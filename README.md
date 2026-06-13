@@ -625,6 +625,18 @@ https://esphome.io/components/remote_transmitter/
           level: YOUR_LEVEL               # ← from dump output e.g. 0 (dimmer level)
 ```
 
+## Drayton
+```yaml
+  - platform: template
+    name: "Open-curtain"       # ← this can be anything you like
+    on_press:
+      - remote_transmitter.transmit_drayton:
+          transmitter_id: rf_transmitter
+          address: 'YOUR_ADDRESS'         # ← The 16-bit ID to send, see dumper output for more info
+          channel: 'YOUR_CHANNEL'         # ← The switch/channel to send, between 0 and 127 inclusive
+          command: 'YOUR_COMMAND'         # ← The command to send, between 0 and 63 inclusive
+```
+
 ## KeeLoq (garage doors/car remotes):
 ```yaml
   - platform: template
