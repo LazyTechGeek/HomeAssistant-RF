@@ -669,7 +669,7 @@ https://esphome.io/components/remote_transmitter/
 ## Close Curtains via RF When Away
 ```yaml
 alias: Close curtains when away
-description: description: Automatically closes the curtains when everyone has left home.
+description: Automatically closes the curtains when everyone has left home.
 triggers:
 
     # Detect when a person has been away from home for 2 minutes   
@@ -688,7 +688,7 @@ actions:
   - action: button.press
     metadata: {}
     target:
-      entity_id: button.ir_rf_hub_demo_curtain_close
+      entity_id: button.YOUR_CURTAIN_CLOSE_BUTTON
     data: {}
 mode: single
 ```
