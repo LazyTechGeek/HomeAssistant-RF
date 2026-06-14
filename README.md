@@ -662,3 +662,33 @@ https://esphome.io/components/remote_transmitter/
           data: >-
           YOUR_PRONTO_DATA              # ← from dump output e.g. 0000 006D 0010 0000 0008 0020...
 ```
+&nbsp;
+## 🤖 Automations
+⚠️ These go in your Home Assistant automations, not ESPHome
+&nbsp;
+## Close Curtains via RF When Away
+```yaml
+alias: Close curtains when away
+description: description: Automatically closes the curtains when everyone has left home.
+triggers:
+
+    # Detect when a person has been away from home for 2 minutes   
+  - trigger: state
+    entity_id:
+      - person.YOUR_PERSON_ENTITY
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+    from:
+      - home
+conditions: []
+actions:
+    # Close curtains        
+  - action: button.press
+    metadata: {}
+    target:
+      entity_id: button.ir_rf_hub_demo_curtain_close
+    data: {}
+mode: single
+```
