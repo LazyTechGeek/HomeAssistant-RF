@@ -18,7 +18,7 @@ In this video I'll show you how to integrate RF control into ESPHome and Home As
   - [Blue PCB Version (Pinout B)](https://www.amazon.co.uk/dp/B0DQL117RW?tag=lazytechgeekshop-21)
 
 ### RF, IR PCB Option
-- [Carrier PCB](https://www.pcbway.com/project/shareproject/IR_RF_Hub_c6b0235f.html)
+- [Carrier PCB — Coming Soon (link pending)]
 - [ESP32 Dev Board x1 (38-pin, requires both 3.3V and 5V pins)](https://www.amazon.co.uk/dp/B0CNYM28CK?tag=lazytechgeekshop-21) *(pack of 3)*
 - **CC1101 433MHz RF Module (Choose One)**
   - [Green PCB Version (Pinout A)](https://www.amazon.co.uk/dp/B09WKGYFPV?tag=lazytechgeekshop-21)
@@ -32,13 +32,13 @@ In this video I'll show you how to integrate RF control into ESPHome and Home As
   - [IR LED & Receiver Kit](https://www.amazon.co.uk/dp/B09NN5VXHX?tag=lazytechgeekshop-21)
 
 ## 🖨️ 3D Print Files
-- [IR RF Hub Enclosure Base](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_rf_hub_enclosure_base.3mf)
-- [IR RF Hub Enclosure Led](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_rf_hub_enclosure_lid.3mf)
-- [IR LED Guide](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_led_guide.3mf)
-- [IR Receiver Guide](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_receiver_guide.3mf)
+- IR RF Hub Enclosure Base — Coming Soon
+- IR RF Hub Enclosure Lid — Coming Soon
+- IR LED Guide — Coming Soon
+- IR Receiver Guide — Coming Soon
 
 ## 🧩 PCB Files
-- [Carrier PCB V1.0](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/carrier_pcb_v1.0_gerbers.zip)
+- [Coming Soon (link pending]
 ## PCB
 <table align="center">
 <tr>
@@ -660,7 +660,7 @@ https://esphome.io/components/remote_transmitter/
       - remote_transmitter.transmit_pronto:
           transmitter_id: rf_transmitter
           data: >-
-          YOUR_PRONTO_DATA              # ← from dump output e.g. 0000 006D 0010 0000 0008 0020...
+            YOUR_PRONTO_DATA              # ← from dump output e.g. 0000 006D 0010 0000 0008 0020...
 ```
 &nbsp;
 ## 🤖 Automations
