@@ -1,9 +1,9 @@
 # RF in Home Assistant
 
-[Insert description]
+In this video I'll show you how to integrate RF control into ESPHome and Home Assistant. We'll clone an existing RF remote, create buttons to control devices like motorised curtains, and set up automations so Home Assistant can do it all for you.
 
 ## Watch the video here:
-▶️ [RF in Home Assistant](YouTube-Link)
+▶️ [RF in Home Assistant](https://youtu.be/6pxcRFqvYDg)
 
 ## 🛒 Parts List
 
