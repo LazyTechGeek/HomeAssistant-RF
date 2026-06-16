@@ -32,13 +32,13 @@ In this video I'll show you how to integrate RF control into ESPHome and Home As
   - [IR LED & Receiver Kit](https://www.amazon.co.uk/dp/B09NN5VXHX?tag=lazytechgeekshop-21)
 
 ## 🖨️ 3D Print Files
-- IR RF Hub Enclosure Base — Coming Soon
-- IR RF Hub Enclosure Lid — Coming Soon
-- IR LED Guide — Coming Soon
-- IR Receiver Guide — Coming Soon
+- [IR RF Hub Enclosure Base](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_rf_hub_enclosure_base.3mf)
+- [IR RF Hub Enclosure Lid](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_rf_hub_enclosure_lid.3mf)
+- [IR LED Guide](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_led_guide.3mf)
+- [IR Receiver Guide](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_receiver_guide.3mf)
 
-## 🧩 PCB Files
-- [Coming Soon (link pending]
+- ## 🧩 PCB Files
+- [Carrier PCB V1.2 Gerbers](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/carrier_pcb_v1.2_gerbers.zip)
 ## PCB
 <table align="center">
 <tr>
