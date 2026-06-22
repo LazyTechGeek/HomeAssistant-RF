@@ -154,8 +154,7 @@
     .field input[type="text"]:focus,
     .field select:focus { border-color: var(--accent); }
 
-    /* ── Button-only fields (shown/hidden based on template type) ── */
-    .button-only-field { display: none; }
+    /* Button-only fields are hidden via inline style on page load, toggled by JS */
 
     /* ── Status message ── */
     .status {
@@ -275,19 +274,19 @@ Example (RC Switch):
       </div>
 
       <!-- Transmitter ID — shown for button -->
-      <div class="field button-only-field" id="transmitterIdField">
+      <div class="field" id="transmitterIdField" style="display:none;">
         <label>Transmitter ID</label>
         <input type="text" id="transmitterId" placeholder="e.g. rf_transmitter" value="rf_transmitter">
       </div>
 
       <!-- Repeat count — shown for button only -->
-      <div class="field button-only-field" id="repeatField">
+      <div class="field" id="repeatField" style="display:none;">
         <label>Repeat Count</label>
         <input type="text" id="repeatCount" placeholder="e.g. 10" value="10">
       </div>
 
       <!-- Repeat wait time — shown for button only -->
-      <div class="field button-only-field" id="waitTimeField">
+      <div class="field" id="waitTimeField" style="display:none;">
         <label>Repeat Wait Time</label>
         <input type="text" id="waitTime" placeholder="e.g. 100ms" value="100ms">
       </div>
@@ -321,7 +320,7 @@ Example (RC Switch):
   </div>
 
   <footer>
-    Made by <a href="https://github.com/LazyTechGeek" target="_blank">Lazy Tech Geek</a> · v1.0-beta ·
+    Made by <a href="https://github.com/LazyTechGeek" target="_blank">Lazy Tech Geek</a> · v1.4-beta ·
     <a href="https://github.com/LazyTechGeek/HomeAssistant-RF" target="_blank">GitHub Repo</a>
   </footer>
 
