@@ -297,10 +297,9 @@ Example (RC Switch):
     </div>
 
     <!-- Include header checkbox -->
-    <label class="option-label" style="margin-top: 0.25rem;">
+    <label class="option-label" id="includeHeaderLabel" style="margin-top: 0.25rem;">
       <input type="checkbox" id="includeHeader" checked>
-      Include <code style="font-size:0.8rem; color: var(--accent);">binary_sensor:</code> /
-      <code style="font-size:0.8rem; color: var(--accent);">button:</code> header
+      Include <code style="font-size:0.8rem; color: var(--accent);">binary_sensor:</code> header
       <span style="color: var(--muted); font-size: 0.78rem; margin-left: 0.4rem;">
         (uncheck if you already have this section in your config)
       </span>
@@ -502,10 +501,10 @@ Example (RC Switch):
     nameEl.placeholder = isButton ? 'e.g. RF Light On' : 'e.g. RF Remote Light On';
 
     // Update the header checkbox label dynamically
-    const headerCheckbox = document.getElementById('includeHeader');
-    const headerLabel = headerCheckbox.parentElement;
-    const codeEl = headerLabel.querySelector('code');
-    if (codeEl) codeEl.textContent = isButton ? 'button:' : 'binary_sensor:';
+    const codeEls = document.querySelectorAll('#includeHeaderLabel code');
+    if (codeEls.length > 0) {
+      codeEls[0].textContent = isButton ? 'button:' : 'binary_sensor:';
+    }
   }
 
   function onProtocolChange() {
