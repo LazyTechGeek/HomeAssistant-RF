@@ -18,7 +18,7 @@ In this video I'll show you how to integrate RF control into ESPHome and Home As
   - [Blue PCB Version (Pinout B)](https://www.amazon.co.uk/dp/B0DQL117RW?tag=lazytechgeekshop-21)
 
 ### RF, IR PCB Option
-- [Carrier PCB V1.2 Gerbers](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/carrier_pcb_v1.2_gerbers.zip)
+- [Carrier PCB V1.3 Gerbers](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/carrier_pcb_v1.3_gerbers.zip)
 - [ESP32 Dev Board x1 (38-pin, requires both 3.3V and 5V pins)](https://www.amazon.co.uk/dp/B0CNYM28CK?tag=lazytechgeekshop-21) *(pack of 3)*
 - **CC1101 433MHz RF Module (Choose One)**
   - [Green PCB Version (Pinout A)](https://www.amazon.co.uk/dp/B09WKGYFPV?tag=lazytechgeekshop-21)
@@ -38,7 +38,7 @@ In this video I'll show you how to integrate RF control into ESPHome and Home As
 - [IR Receiver Guide](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/ir_receiver_guide.3mf)
 
 - ## 🧩 PCB Files
-- [Carrier PCB V1.2 Gerbers](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/carrier_pcb_v1.2_gerbers.zip)
+- [Carrier PCB V1.3 Gerbers](https://raw.githubusercontent.com/LazyTechGeek/HomeAssistant-RF/main/assets/carrier_pcb_v1.3_gerbers.zip)
 ## PCB
 <table align="center">
 <tr>
