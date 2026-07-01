@@ -703,7 +703,7 @@ Following on from the previous video, this time I'll show you how to use RF and 
 "This video continues from the RF/IR Hub project. This time, we'll focus on using spare or old RF and IR remotes — when you press a button, it triggers an automation in Home Assistant. We'll start with this base code as our foundation."
 
 ## Watch the video here:
-▶️ [Use Old IR & RF Remotes to Trigger Home Assistant Automations](PENDING)
+▶️ [Use Old IR & RF Remotes to Trigger Home Assistant Automations](https://youtu.be/5ZTEVD5hgPI)
 
 
 ##  Base Code
